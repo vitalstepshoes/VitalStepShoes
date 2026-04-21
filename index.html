@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vital Step Shoes</title>
+  <meta name="description" content="Calzado minimalista de calidad. Diseños cuidados, precios honestos. Disponible en Vinted." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #0e0e0e;
+      --white: #f7f5f2;
+      --warm: #e8e4de;
+      --muted: #9a9590;
+      --accent: #c8b89a;
+      --border: rgba(14,14,14,0.1);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--white);
+      color: var(--black);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      font-size: 15px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 3rem;
+      background: rgba(247,245,242,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-size: 18px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--black);
+      text-decoration: none;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .nav-link {
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-link:hover { color: var(--black); }
+
+    .nav-cta {
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--black);
+      text-decoration: none;
+      border-bottom: 1px solid var(--black);
+      padding-bottom: 1px;
+      transition: opacity 0.2s;
+    }
+    .nav-cta:hover { opacity: 0.5; }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 3rem 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: var(--warm);
+      z-index: 0;
+    }
+
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      bottom: 0; right: 0;
+      width: 55%;
+      height: 100%;
+      background: var(--white);
+      clip-path: polygon(18% 0, 100% 0, 100% 100%, 0% 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 560px;
+      animation: fadeUp 1s ease both;
+    }
+
+    .hero-eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(52px, 7vw, 82px);
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      color: var(--black);
+      margin-bottom: 1.75rem;
+    }
+
+    .hero p {
+      font-size: 15px;
+      color: var(--muted);
+      max-width: 360px;
+      margin-bottom: 2.5rem;
+      line-height: 1.8;
+    }
+
+    .hero-actions { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+
+    .btn-dark {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 28px;
+      background: var(--black);
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .btn-dark:hover { opacity: 0.75; }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      gap: 6px;
+      transition: color 0.2s;
+    }
+    .btn-ghost:hover { color: var(--black); }
+
+    /* MARQUEE */
+    .marquee-wrap {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+      padding: 0.85rem 0;
+      background: var(--white);
+    }
+
+    .marquee-track {
+      display: flex;
+      gap: 3rem;
+      animation: marquee 22s linear infinite;
+      width: max-content;
+    }
+
+    .marquee-item {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .marquee-dot {
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: var(--accent);
+      display: inline-block;
+    }
+
+    /* SECTIONS */
+    .section { padding: 6rem 3rem; }
+    .section-sm { padding: 4rem 3rem; }
+
+    .label {
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+
+    h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(32px, 4vw, 48px);
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      color: var(--black);
+      margin-bottom: 1.25rem;
+    }
+
+    /* ABOUT */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .about-visual {
+      aspect-ratio: 3/4;
+      background: var(--warm);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-visual::before {
+      content: 'VS';
+      position: absolute;
+      bottom: -20px; right: -10px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 180px;
+      font-weight: 300;
+      color: rgba(14,14,14,0.04);
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .about-visual-inner {
+      position: absolute;
+      inset: 2rem;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .shoe-svg { opacity: 0.5; }
+
+    .about-text p {
+      color: var(--muted);
+      margin-bottom: 1.25rem;
+      font-size: 15px;
+      line-height: 1.85;
+    }
+
+    .about-text p:last-of-type { margin-bottom: 2rem; }
+
+    /* VALUES */
+    .values-section { background: var(--warm); }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 0;
+      border-top: 1px solid var(--border);
+      margin-top: 3rem;
+    }
+
+    .value-item {
+      padding: 2.5rem 2rem;
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .value-item:last-child { border-right: none; }
+
+    .value-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      display: block;
+      margin-bottom: 1rem;
+    }
+
+    .value-item h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-size: 22px;
+      color: var(--black);
+      margin-bottom: 0.6rem;
+      letter-spacing: 0.02em;
+    }
+
+    .value-item p {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    /* VINTED CTA */
+    .vinted-section {
+      text-align: center;
+      padding: 7rem 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .vinted-section::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      pointer-events: none;
+    }
+
+    .vinted-section::after {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 340px; height: 340px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      pointer-events: none;
+    }
+
+    .vinted-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid var(--border);
+      padding: 6px 16px;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .vinted-pulse {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: #1DBF73;
+      animation: pulse 2s ease infinite;
+    }
+
+    .vinted-section h2 { margin-bottom: 1rem; position: relative; z-index: 1; }
+
+    .vinted-section p {
+      color: var(--muted);
+      font-size: 15px;
+      max-width: 360px;
+      margin: 0 auto 2.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .vinted-section .btn-dark { position: relative; z-index: 1; }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    footer .logo { font-size: 15px; }
+
+    .footer-right {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    footer p, footer a {
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      text-decoration: none;
+    }
+    footer a:hover { color: var(--black); }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
+    }
+
+    /* REVEAL */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { padding: 1.25rem 1.5rem; }
+      .nav-right { gap: 1.25rem; }
+      .hero { padding: 0 1.5rem 4rem; }
+      .section, .section-sm { padding: 4rem 1.5rem; }
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .about-visual { aspect-ratio: 4/3; }
+      .values-grid { grid-template-columns: 1fr 1fr; }
+      .value-item:nth-child(even) { border-right: none; }
+      footer { padding: 1.5rem; }
+      .vinted-section { padding: 5rem 1.5rem; }
+    }
+
+    @media (max-width: 480px) {
+      .values-grid { grid-template-columns: 1fr; }
+      .value-item { border-right: none; }
+      .hero-bg::after { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="#" class="logo">Vital Step Shoes</a>
+    <div class="nav-right">
+      <a href="#about" class="nav-link">Nosotros</a>
+      <a href="#valores" class="nav-link">Valores</a>
+      <a href="https://www.vinted.es/member/3137409045-vitalstep" target="_blank" class="nav-cta">Tienda →</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Calzado · España · 2025</p>
+      <h1>El calzado que<br>define tu paso</h1>
+      <p>Diseños minimalistas, materiales cuidados y precios honestos. Cada par nace con la intención de durar.</p>
+      <div class="hero-actions">
+        <a href="https://www.vinted.es/member/3137409045-vitalstep" target="_blank" class="btn-dark">
+          Ver colección
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#about" class="btn-ghost">
+          Nuestra historia
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 8l4 4 4-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee-wrap">
+    <div class="marquee-track">
+      <span class="marquee-item">Calidad seleccionada <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Envíos rápidos <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Precio honesto <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Disponible en Vinted <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Atención directa <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Diseño minimalista <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Calidad seleccionada <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Envíos rápidos <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Precio honesto <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Disponible en Vinted <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Atención directa <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Diseño minimalista <span class="marquee-dot"></span></span>
+    </div>
+  </div>
+
+  <section class="section" id="about">
+    <div class="about-grid">
+      <div class="about-visual reveal">
+        <div class="about-visual-inner">
+          <svg class="shoe-svg" width="160" height="80" viewBox="0 0 160 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M15 55 Q40 15 95 28 Q128 36 148 50 Q154 54 148 60 Q82 70 28 64 Q12 61 15 55Z" fill="#0e0e0e" opacity="0.08" stroke="#0e0e0e" stroke-width="1" opacity="0.3"/>
+            <path d="M15 55 Q28 52 55 53 Q82 54 108 51 Q128 48 148 50" stroke="#0e0e0e" stroke-width="0.5" fill="none" opacity="0.4"/>
+            <path d="M42 52 Q68 30 102 30" stroke="#0e0e0e" stroke-width="1" fill="none" opacity="0.25" stroke-linecap="round"/>
+            <path d="M58 50 Q72 36 92 34" stroke="#0e0e0e" stroke-width="0.6" fill="none" opacity="0.2" stroke-linecap="round" stroke-dasharray="3 3"/>
+          </svg>
+        </div>
+      </div>
+      <div class="about-text reveal">
+        <span class="label">Quiénes somos</span>
+        <h2>Diseño consciente,<br>precio justo</h2>
+        <p>Vital Step Shoes nace de la creencia de que el buen calzado no tiene que ser inaccesible. Somos una marca española comprometida con el diseño minimalista y los materiales cuidados.</p>
+        <p>Vendemos directamente a través de Vinted para eliminar intermediarios y trasladar ese ahorro a ti. Sin tiendas físicas, sin costes innecesarios, sin compromisos.</p>
+        <a href="https://www.vinted.es/member/3137409045-vitalstep" target="_blank" class="btn-dark">
+          Visitar tienda
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section values-section" id="valores">
+    <span class="label reveal">Por qué elegirnos</span>
+    <h2 class="reveal">Cuatro pilares,<br>una promesa</h2>
+    <div class="values-grid">
+      <div class="value-item reveal">
+        <span class="value-num">01</span>
+        <h3>Calidad seleccionada</h3>
+        <p>Cada par pasa por un control exhaustivo antes de llegar a tus manos. Sin concesiones.</p>
+      </div>
+      <div class="value-item reveal">
+        <span class="value-num">02</span>
+        <h3>Envíos rápidos</h3>
+        <p>Gestionamos cada pedido con agilidad para que no esperes más de lo necesario.</p>
+      </div>
+      <div class="value-item reveal">
+        <span class="value-num">03</span>
+        <h3>Precio honesto</h3>
+        <p>Sin intermediarios. Venta directa en Vinted para ofrecerte el mejor precio posible.</p>
+      </div>
+      <div class="value-item reveal">
+        <span class="value-num">04</span>
+        <h3>Atención real</h3>
+        <p>Hablamos contigo directamente. Sin bots, sin formularios, sin esperas.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="vinted-section">
+    <div class="vinted-badge">
+      <span class="vinted-pulse"></span>
+      Disponible ahora en Vinted
+    </div>
+    <h2 class="reveal">Encuentra tu par perfecto</h2>
+    <p class="reveal">Toda nuestra colección disponible en Vinted. Compra segura, envío protegido y trato directo.</p>
+    <a href="https://www.vinted.es/member/3137409045-vitalstep" target="_blank" class="btn-dark">
+      Ir a nuestra tienda
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </section>
+
+  <footer>
+    <a href="#" class="logo">Vital Step Shoes</a>
+    <div class="footer-right">
+      <a href="https://www.vinted.es/member/3137409045-vitalstep" target="_blank">Vinted</a>
+      <p>© 2025 · vitalstepshoes.com</p>
+    </div>
+  </footer>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
